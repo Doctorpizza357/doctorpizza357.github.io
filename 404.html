@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--=============== FAVICON ===============-->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/bitmoji.png">
+    <link rel="mask-icon" href="assets/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="assets/favicons/bitmoji.png">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#a789d4">
+
+    <!--=============== BOXICONS ===============-->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <title>404 - Page Not Found | Tomas's Portfolio</title>
+    <style>
+        .error-page {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .error-code {
+            font-size: 10rem;
+            font-weight: 700;
+            color: var(--first-color);
+            text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+            margin: 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .error-text {
+            font-size: 2rem;
+            margin: 1rem 0 2rem;
+        }
+
+        .error-description {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            column-gap: 0.5rem;
+            background-color: var(--first-color);
+            color: #fff;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: var(--font-medium);
+            transition: all 0.3s ease;
+        }
+
+        .home-button:hover {
+            background-color: var(--first-color-alt);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .error-icon {
+            font-size: 5rem;
+            color: var(--first-color);
+            animation: spin 8s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-page">
+        <i class='bx bx-error-circle error-icon'></i>
+        <h1 class="error-code">404</h1>
+        <h2 class="error-text">Page Not Found</h2>
+        <p class="error-description">Oops! The page you're looking for doesn't exist or might have been moved.</p>
+        <a href="index.html" class="home-button">
+            <i class='bx bx-home'></i> Back to Home
+        </a>
+    </div>
+
+    <script>
+        // Add some interactive animations
+        document.querySelector('.error-code').addEventListener('click', function() {
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = 'float 3s ease-in-out infinite';
+            }, 10);
+        });
+
+        document.querySelector('.home-button').addEventListener('mouseenter', function() {
+            this.classList.add('bounce');
+            setTimeout(() => this.classList.remove('bounce'), 500);
+        });
+    </script>
+</body>
+
+</html>

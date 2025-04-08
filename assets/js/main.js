@@ -231,3 +231,76 @@ sr.reveal(`.footer, footer__container`, {
   origin: "bottom",
   distance: "30px",
 });
+
+// Page Loader
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const loader = document.getElementById('loader');
+        loader.classList.add('loader--hidden');
+    }, 1000); // Show loader for at least 1 second
+});
+
+// Enhanced ScrollReveal Animations
+// Update existing ScrollReveal configuration
+sr.defaults = {
+    origin: 'top',
+    distance: '60px',
+    duration: 2500,
+    delay: 400,
+    // reset: true
+};
+
+sr.reveal('.home__data', {});
+sr.reveal('.home__handle', {delay: 700});
+sr.reveal('.home__social, .home__scroll', {delay: 900, origin: 'bottom'});
+
+sr.reveal('.about__img', {origin: 'left'});
+sr.reveal('.about__data', {origin: 'right'});
+sr.reveal('.about__box', {interval: 200});
+
+sr.reveal('.skills__content', {interval: 200});
+sr.reveal('.skills__group', {interval: 100, origin: 'bottom'});
+
+sr.reveal('.work__card', {interval: 200});
+
+sr.reveal('.contact__content', {interval: 200});
+sr.reveal('.contact__card', {interval: 100, origin: 'bottom'});
+
+// Interactive animations
+document.querySelectorAll('.button').forEach(button => {
+    button.addEventListener('mouseenter', () => {
+        button.classList.add('bounce');
+        setTimeout(() => button.classList.remove('bounce'), 500);
+    });
+});
+
+// Add mouse hover effects for work cards
+document.querySelectorAll('.work__card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        const img = this.querySelector('.work__img');
+        img.style.transform = 'scale(1.05)';
+        img.style.transition = 'transform 0.5s ease';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        const img = this.querySelector('.work__img');
+        img.style.transform = 'scale(1)';
+    });
+});
+
+// Nav logo animation enhancement
+const navLogo = document.querySelector('.nav__logo');
+if (navLogo) {
+    navLogo.addEventListener('mouseover', function() {
+        this.classList.add('animate__animated');
+        this.classList.add('animate__pulse');
+        
+        // Remove classes after animation completes
+        setTimeout(() => {
+            this.classList.remove('animate__animated');
+            this.classList.remove('animate__pulse');
+        }, 1000);
+    });
+}
+
+// Remove special animation for the main name section
