@@ -20,11 +20,7 @@ describe('useLazyLoad', () => {
       disconnect: disconnectMock,
     }));
 
-    Object.defineProperty(window, 'IntersectionObserver', {
-      writable: true,
-      configurable: true,
-      value: MockIntersectionObserver,
-    });
+    vi.stubGlobal('IntersectionObserver', MockIntersectionObserver);
   });
 
   afterEach(() => {
@@ -68,11 +64,7 @@ describe('useLazyLoad', () => {
   });
 
   it('shows content immediately when IntersectionObserver is not available', () => {
-    Object.defineProperty(window, 'IntersectionObserver', {
-      writable: true,
-      configurable: true,
-      value: undefined,
-    });
+    vi.stubGlobal('IntersectionObserver', undefined);
 
     render(<TestComponent />);
     expect(screen.getByTestId('content')).toBeInTheDocument();
