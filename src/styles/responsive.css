@@ -1,0 +1,153 @@
+/* Responsive Layout System
+ * Breakpoints:
+ *   - Desktop: ≥1200px
+ *   - Laptop: 992px–1199px
+ *   - Tablet: 768px–991px
+ *   - Mobile: <768px
+ *
+ * This file provides global responsive overrides and utility rules.
+ * Component-specific responsive styles live in their CSS modules.
+ *
+ * Requirements: 6.1, 6.3, 6.4, 6.5
+ */
+
+/* ============================================
+   Prevent horizontal overflow on all viewports
+   ============================================ */
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* ============================================
+   Responsive content width adjustments
+   ============================================ */
+
+/* Laptop viewport: slightly tighter max-width */
+@media (min-width: 992px) and (max-width: 1199px) {
+  main {
+    max-width: 960px;
+  }
+}
+
+/* Tablet viewport */
+@media (min-width: 768px) and (max-width: 991px) {
+  main {
+    max-width: 720px;
+  }
+}
+
+/* Mobile viewport */
+@media (max-width: 767px) {
+  main {
+    max-width: 100%;
+    padding-inline: 1rem;
+  }
+}
+
+/* ============================================
+   Tap target minimums for touch devices
+   All interactive elements must be at least 44x44px
+   on tablet and mobile viewports.
+   Applied via min-height to preserve inline flow.
+   ============================================ */
+
+@media (max-width: 991px) {
+  button,
+  [role="button"],
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  select,
+  summary {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Links and anchors get padding-based tap target expansion
+     to avoid disrupting text flow */
+  a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/* ============================================
+   Fluid images and media — enforce containment
+   ============================================ */
+
+img,
+video,
+iframe,
+embed,
+object,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent images from breaking out of their containers */
+figure,
+picture {
+  overflow: hidden;
+  max-width: 100%;
+}
+
+/* ============================================
+   Typography minimums enforcement
+   Body text: min 16px (1rem)
+   Secondary/meta text: min 14px (0.875rem)
+   These are already handled by clamp() in tokens.css
+   but we add explicit floor constraints as safety net
+   ============================================ */
+
+body {
+  font-size: max(1rem, var(--text-body));
+}
+
+.mono,
+code,
+kbd,
+samp {
+  font-size: max(0.875rem, var(--text-meta));
+}
+
+/* ============================================
+   Responsive grid/layout utilities
+   ============================================ */
+
+/* Tablet: force single-column grids that were multi-column */
+@media (max-width: 991px) {
+  .responsive-grid-collapse {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================
+   Section spacing adjustments per breakpoint
+   ============================================ */
+
+/* Laptop */
+@media (min-width: 992px) and (max-width: 1199px) {
+  section {
+    padding-block: clamp(4rem, 10vh, 8rem);
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+  section {
+    padding-block: clamp(3rem, 8vh, 6rem);
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  section {
+    padding-block: clamp(2.5rem, 6vh, 5rem);
+  }
+}

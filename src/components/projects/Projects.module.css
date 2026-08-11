@@ -1,0 +1,344 @@
+/* Stacked editorial layout — each project is a full-width row */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+}
+
+/* Individual project entry — horizontal row with index, content, arrow */
+.entry {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--color-bg-secondary);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-out);
+  outline: none;
+}
+
+.entry:first-child {
+  border-top: 1px solid var(--color-bg-secondary);
+}
+
+.entry:hover,
+.entry:focus-visible {
+  background-color: var(--color-bg-secondary);
+}
+
+.entry:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-radius: 4px;
+}
+
+/* Project number — monospace, muted */
+.index {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-text-muted);
+  min-width: 2ch;
+}
+
+/* Main content area */
+.entryContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.entryTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-subsection);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.entrySummary {
+  font-family: var(--font-display);
+  font-size: var(--text-body);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+  max-width: 640px;
+}
+
+/* Technology tags — small monospace chips */
+.techList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.techTag {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-accent);
+  background-color: var(--color-accent-dim);
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+/* Arrow indicator */
+.arrow {
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  transition: transform var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.entry:hover .arrow,
+.entry:focus-visible .arrow {
+  transform: translateX(4px);
+  color: var(--color-accent);
+}
+
+/* Responsive adjustments */
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+  .entry {
+    gap: 1.25rem;
+    padding: 1.75rem 0;
+  }
+
+  .entrySummary {
+    max-width: 100%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .entry {
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    padding: 1.5rem 0;
+    min-height: 44px;
+  }
+
+  .index {
+    display: none;
+  }
+
+  .entryTitle {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+  }
+
+  .entrySummary {
+    font-size: max(0.875rem, 0.95rem);
+  }
+}
+
+/* ===========================
+   Case Study View
+   =========================== */
+
+.caseStudy {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 2rem;
+  border-radius: 4px;
+  transition: color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+.backButton:hover {
+  color: var(--color-accent);
+  background-color: var(--color-accent-dim);
+}
+
+.backButton:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  color: var(--color-accent);
+}
+
+.caseStudyHeader {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-bg-secondary);
+}
+
+.caseStudyTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-section-title);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+
+.caseStudySummary {
+  font-family: var(--font-display);
+  font-size: var(--text-body);
+  color: var(--color-text-secondary);
+  margin: 0 0 1rem;
+  line-height: 1.6;
+  max-width: 720px;
+}
+
+.caseStudyDescription {
+  font-family: var(--font-display);
+  font-size: var(--text-body);
+  color: var(--color-text-primary);
+  margin: 0 0 1.5rem;
+  line-height: 1.7;
+  max-width: 720px;
+}
+
+.repoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-accent);
+  text-decoration: none;
+  margin-top: 1rem;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--color-accent-dim);
+  border-radius: 4px;
+  transition: background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+
+.repoLink:hover {
+  background-color: var(--color-accent-dim);
+  border-color: var(--color-accent);
+}
+
+.repoLink:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* Case Study Sections (Context, Process, Technical Details) */
+.caseStudySections {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.caseStudySection {
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--color-accent-dim);
+}
+
+.sectionHeading {
+  font-family: var(--font-display);
+  font-size: var(--text-subsection);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 0.75rem;
+}
+
+.sectionBody {
+  font-family: var(--font-display);
+  font-size: var(--text-body);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.7;
+  max-width: 720px;
+}
+
+/* Image Gallery */
+.imageGallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.galleryImage {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid var(--color-bg-secondary);
+  object-fit: cover;
+  aspect-ratio: 16 / 10;
+}
+
+/* Responsive adjustments for Case Study View */
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+  .caseStudyTitle {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+  }
+
+  .caseStudySummary,
+  .caseStudyDescription,
+  .sectionBody {
+    max-width: 100%;
+  }
+
+  .imageGallery {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+
+  .backButton {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .repoLink {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .caseStudyTitle {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+
+  .caseStudySection {
+    padding-left: 1rem;
+  }
+
+  .imageGallery {
+    grid-template-columns: 1fr;
+  }
+
+  .backButton {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem 1rem;
+  }
+
+  .repoLink {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+  }
+}

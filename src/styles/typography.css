@@ -1,0 +1,54 @@
+/* Typography - Font Declarations
+ * Inter for display/headings, JetBrains Mono for metadata/code.
+ * Loaded via Google Fonts for simplicity and CDN performance.
+ */
+
+/* Inter - Display typeface (headings, body) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* JetBrains Mono - Monospace typeface (metadata, labels, dates) */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* Heading styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: var(--text-hero);
+  font-weight: 800;
+}
+
+h2 {
+  font-size: var(--text-section-title);
+}
+
+h3 {
+  font-size: var(--text-subsection);
+  font-weight: 600;
+}
+
+/* Body text */
+body {
+  font-family: var(--font-display);
+  font-size: var(--text-body);
+  line-height: 1.6;
+}
+
+/* Monospace elements - metadata, labels, dates, project numbers */
+code,
+kbd,
+samp,
+pre,
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+}

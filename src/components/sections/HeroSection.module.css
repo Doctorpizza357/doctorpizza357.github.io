@@ -1,0 +1,155 @@
+/* HeroSection styles
+ * Full-viewport opening section with engineering-inspired visual motifs.
+ * Clean, confident, minimal — lets the name and credentials speak.
+ */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+  padding-block: var(--section-gap);
+}
+
+/* Engineering grid overlay — subtle blueprint-like background */
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image:
+    linear-gradient(var(--color-text-secondary) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-text-secondary) 1px, transparent 1px);
+  background-size: 80px 80px;
+  z-index: 0;
+}
+
+/* Content container */
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: var(--content-max-width);
+  width: 100%;
+}
+
+/* Small intro label above name */
+.intro {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+/* Hero title — name */
+.name {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+
+/* Tagline — credentials */
+.tagline {
+  font-family: var(--font-mono);
+  font-size: var(--text-subsection);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.01em;
+  margin-top: 0.25rem;
+}
+
+/* Descriptor — short personal line */
+.descriptor {
+  font-family: var(--font-display);
+  font-size: var(--text-body);
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-top: 1rem;
+  max-width: 500px;
+  line-height: 1.5;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+}
+
+/* Visual element container */
+.visualElement {
+  position: relative;
+  z-index: 1;
+  margin-top: 2rem;
+}
+
+/* Accent dot — small engineering reference point */
+.accentDot {
+  position: absolute;
+  top: clamp(2rem, 6vh, 4rem);
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  z-index: 1;
+}
+
+/* Scroll indicator at bottom */
+.scrollIndicator {
+  position: absolute;
+  bottom: clamp(2rem, 5vh, 3.5rem);
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 1;
+}
+
+.scrollLine {
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  background-color: var(--color-text-muted);
+}
+
+.scrollLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* Responsive adjustments */
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .hero {
+    padding-block: calc(var(--section-gap) * 0.8);
+  }
+
+  .gridOverlay {
+    background-size: 60px 60px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding-block: calc(var(--section-gap) * 0.75);
+  }
+
+  .gridOverlay {
+    background-size: 50px 50px;
+  }
+
+  .scrollIndicator {
+    bottom: clamp(1.5rem, 4vh, 3rem);
+  }
+
+  .descriptor {
+    font-size: max(14px, var(--text-body));
+  }
+}

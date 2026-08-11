@@ -1,0 +1,346 @@
+/* Navigation Module
+ * Fixed-position sidebar navigation on desktop, hamburger menu on mobile.
+ * All tap targets are minimum 44x44px for accessibility.
+ * Uses design tokens for colors, fonts, and animation durations.
+ */
+
+/* ============================================
+   Desktop Navigation — Fixed sidebar
+   ============================================ */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  padding: 1rem 0.5rem;
+  pointer-events: none;
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  list-style: none;
+  pointer-events: auto;
+}
+
+/* ============================================
+   NavItem — Individual navigation item
+   ============================================ */
+
+.navItem {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--duration-fast), background-color var(--duration-fast);
+  white-space: nowrap;
+}
+
+.navItem:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-secondary);
+}
+
+.navItem:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.navItemActive {
+  color: var(--color-accent);
+  background-color: var(--color-accent-dim);
+}
+
+.navItemActive:hover {
+  color: var(--color-accent);
+  background-color: var(--color-accent-dim);
+}
+
+.navItemLabel {
+  display: none;
+  margin-left: 0.5rem;
+}
+
+.navItemDot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex-shrink: 0;
+  transition: transform var(--duration-fast);
+}
+
+.navItemActive .navItemDot {
+  transform: scale(1.4);
+}
+
+/* Show labels on hover of the entire nav */
+.nav:hover .navItemLabel {
+  display: inline;
+}
+
+/* ============================================
+   Hamburger Button — Mobile only
+   ============================================ */
+
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 200;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-bg-secondary);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  transition: background-color var(--duration-fast);
+}
+
+.hamburger:hover {
+  background-color: var(--color-text-muted);
+}
+
+.hamburger:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.hamburgerIcon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 24px;
+  height: 24px;
+}
+
+.hamburgerLine {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background-color: var(--color-text-primary);
+  border-radius: 1px;
+  transition: transform var(--duration-fast), opacity var(--duration-fast);
+}
+
+/* Hamburger open state — transform into X */
+.hamburgerOpen .hamburgerLine:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.hamburgerOpen .hamburgerLine:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerOpen .hamburgerLine:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* ============================================
+   Mobile Drawer Overlay
+   ============================================ */
+
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity var(--duration-normal);
+  pointer-events: none;
+}
+
+.overlayVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ============================================
+   Mobile Drawer
+   ============================================ */
+
+.drawer {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 175;
+  width: min(280px, 80vw);
+  height: 100vh;
+  padding: 5rem 1.5rem 2rem;
+  background-color: var(--color-bg-primary);
+  border-left: 1px solid var(--color-bg-secondary);
+  transform: translateX(100%);
+  transition: transform var(--duration-normal) var(--ease-out);
+  overflow-y: auto;
+}
+
+.drawerOpen {
+  transform: translateX(0);
+}
+
+.drawerList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  list-style: none;
+}
+
+.drawerItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: var(--text-body);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--duration-fast), background-color var(--duration-fast);
+  width: 100%;
+  text-align: left;
+}
+
+.drawerItem:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-secondary);
+}
+
+.drawerItem:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.drawerItemActive {
+  color: var(--color-accent);
+  background-color: var(--color-accent-dim);
+}
+
+.drawerItemDot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   Responsive Breakpoints
+   ============================================ */
+
+/* Mobile: show hamburger + drawer, hide sidebar */
+@media (max-width: 767px) {
+  .nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .overlay {
+    display: block;
+  }
+
+  .drawer {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Tablet (768–991px): show hamburger + drawer, hide sidebar
+   Tap targets remain 44px minimum */
+@media (min-width: 768px) and (max-width: 991px) {
+  .nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .overlay {
+    display: block;
+  }
+
+  .drawer {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Laptop (992–1199px): show compact sidebar, hide hamburger */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .nav {
+    display: flex;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .drawer {
+    display: none;
+  }
+
+  .navItemLabel {
+    display: none;
+  }
+}
+
+/* Desktop (≥1200px): show sidebar with labels */
+@media (min-width: 1200px) {
+  .nav {
+    display: flex;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .drawer {
+    display: none;
+  }
+
+  .navItemLabel {
+    display: inline;
+  }
+}

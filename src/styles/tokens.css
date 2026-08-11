@@ -1,0 +1,62 @@
+/* Design Token System
+ * All visual design decisions are centralized here as CSS custom properties.
+ * Components reference these tokens rather than hardcoding values.
+ */
+
+:root {
+  /* Color Palette
+   * Contrast ratios against --color-bg-primary (#0f0f0f):
+   *   --color-text-primary (#f5f5f5): ~19:1 — passes all sizes
+   *   --color-text-secondary (#a0a0a0): ~5.8:1 — passes 4.5:1 for normal text
+   *   --color-text-muted (#666666): ~3.4:1 — passes 3:1 for large text only (≥18px or ≥14px bold)
+   *   --color-accent (#4a9eff): ~5.5:1 — passes 4.5:1 for normal text
+   *
+   * IMPORTANT: --color-text-muted must only be used for large text (≥18px),
+   * bold text (≥14px bold), or non-essential decorative/metadata elements.
+   */
+  --color-bg-primary: #0f0f0f;
+  --color-bg-secondary: #1a1a1a;
+  --color-text-primary: #f5f5f5;
+  --color-text-secondary: #a0a0a0;
+  --color-text-muted: #666666;
+  --color-accent: #4a9eff;
+  --color-accent-dim: #4a9eff15;
+
+  /* Typography - Font Families */
+  --font-display: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Typography - Type Scale (fluid, responsive) */
+  --text-hero: clamp(3rem, 8vw, 6rem);
+  --text-section-title: clamp(2rem, 4vw, 3.5rem);
+  --text-subsection: clamp(1.25rem, 2.5vw, 1.75rem);
+  --text-body: clamp(1rem, 1.5vw, 1.125rem);
+  --text-meta: clamp(0.875rem, 1vw, 0.9375rem);
+
+  /* Spacing */
+  --section-gap: clamp(6rem, 12vh, 10rem);
+  --content-max-width: 1200px;
+  --content-padding: clamp(1rem, 4vw, 3rem);
+
+  /* Animation */
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 800ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Focus */
+  --focus-ring: 2px solid var(--color-accent);
+  --focus-offset: 2px;
+}
+
+/* Reduced Motion Override
+ * When the user prefers reduced motion, disable all animation durations.
+ * Components using these variables will apply instant state changes.
+ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+    --duration-slow: 0ms;
+  }
+}

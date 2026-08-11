@@ -1,0 +1,49 @@
+/* ProjectLandingPage — editorial grid layout with animated filter transitions */
+
+.landingPage {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+}
+
+/* Project grid — clean uniform grid */
+.projectGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* Card wrapper for animation */
+.cardWrapper {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--duration-normal) var(--ease-out),
+    transform var(--duration-normal) var(--ease-out);
+}
+
+/* Enter animation — cards fade in from below */
+.cardEnter {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+/* Leave animation — cards fade out */
+.cardLeave {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+
+/* Responsive — 2 columns on tablet, single column on mobile */
+@media (min-width: 768px) and (max-width: 1099px) {
+  .projectGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .projectGrid {
+    grid-template-columns: 1fr;
+  }
+}

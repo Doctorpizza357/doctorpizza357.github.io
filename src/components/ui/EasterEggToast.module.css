@@ -1,0 +1,77 @@
+/* Easter Egg Toast - positioned to not obstruct any focusable elements */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-bg-secondary, #2a2a2a);
+  border: 1px solid var(--color-accent, #4a9eff);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  /* Does not capture pointer events on surrounding area — only the toast itself */
+  pointer-events: auto;
+  max-width: 320px;
+}
+
+/* With motion: animate in */
+.withMotion {
+  animation: slideIn 300ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+}
+
+/* Without motion: appear instantly, static visual only */
+.noMotion {
+  opacity: 1;
+}
+
+.emoji {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.message {
+  font-family: var(--font-display, 'Inter', sans-serif);
+  font-size: var(--text-body, 1rem);
+  color: var(--color-text-primary, #fafafa);
+  font-weight: 500;
+}
+
+.hint {
+  display: block;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: var(--text-meta, 0.875rem);
+  color: var(--color-text-secondary, #9a9a9a);
+  margin-top: 0.25rem;
+}
+
+/* Stack message and hint vertically */
+.toast {
+  flex-wrap: wrap;
+}
+
+.hint {
+  width: 100%;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced motion: no animation keyframes */
+@media (prefers-reduced-motion: reduce) {
+  .withMotion {
+    animation: none;
+    opacity: 1;
+  }
+}

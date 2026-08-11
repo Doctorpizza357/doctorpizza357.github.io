@@ -1,0 +1,184 @@
+/* ProjectModal — overlay modal for project quick view */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: fadeIn 200ms ease-out;
+}
+
+.modal {
+  position: relative;
+  background-color: var(--color-bg-secondary);
+  border-radius: 12px;
+  max-width: 520px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  outline: none;
+  animation: slideUp 300ms var(--ease-out);
+}
+
+.closeButton {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-secondary);
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--duration-fast), background-color var(--duration-fast);
+}
+
+.closeButton:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-text-muted);
+}
+
+.imageContainer {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-subsection);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.description {
+  font-family: var(--font-display);
+  font-size: var(--text-body);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-text-muted);
+}
+
+.metaItem {}
+.metaDot { opacity: 0.5; }
+
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.techTag {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-primary);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.learnMoreButton {
+  font-family: var(--font-display);
+  font-size: var(--text-body);
+  font-weight: 500;
+  color: var(--color-bg-primary);
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: 6px;
+  padding: 0.625rem 1.25rem;
+  cursor: pointer;
+  transition: opacity var(--duration-fast);
+}
+
+.learnMoreButton:hover {
+  opacity: 0.85;
+}
+
+.learnMoreButton:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.repoLink {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-text-muted);
+  border-radius: 6px;
+  padding: 0.625rem 1rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: color var(--duration-fast), border-color var(--duration-fast);
+}
+
+.repoLink:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 767px) {
+  .backdrop {
+    padding: 1rem;
+    align-items: flex-end;
+  }
+
+  .modal {
+    max-height: 80vh;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .imageContainer {
+    height: 160px;
+  }
+}

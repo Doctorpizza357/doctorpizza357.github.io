@@ -1,0 +1,40 @@
+{
+  "name": "tomas-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build && tsx scripts/verify-assets.ts",
+    "build:no-verify": "tsc -b && vite build",
+    "verify-assets": "tsx scripts/verify-assets.ts",
+    "preview": "vite preview",
+    "test": "vitest --run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.1",
+    "gsap": "^3.12.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0",
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.0.1",
+    "@types/node": "^26.2.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/three": "^0.185.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "fast-check": "^3.22.0",
+    "jsdom": "^25.0.1",
+    "sharp": "^0.35.3",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vite-plugin-image-optimizer": "^1.1.8",
+    "vitest": "^2.1.5"
+  }
+}

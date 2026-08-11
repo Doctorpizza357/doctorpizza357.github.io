@@ -1,0 +1,136 @@
+.timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 2rem 0;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding-left: var(--content-padding);
+  padding-right: var(--content-padding);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-section-title);
+  color: var(--color-text-primary);
+  margin-bottom: 3rem;
+}
+
+/* Vertical line connector */
+.line {
+  position: absolute;
+  left: calc(var(--content-padding) + 6px);
+  top: 6rem;
+  bottom: 2rem;
+  width: 2px;
+  background: var(--color-accent-dim);
+}
+
+.entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  position: relative;
+  padding-bottom: 2.5rem;
+  padding-left: 2rem;
+}
+
+.entry:last-child {
+  padding-bottom: 0;
+}
+
+/* Accent dot marker */
+.marker {
+  position: absolute;
+  left: 0;
+  top: 0.25rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: 2px solid var(--color-bg-primary);
+  box-shadow: 0 0 0 2px var(--color-accent-dim);
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.date {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+}
+
+.entryTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-subsection);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.description {
+  font-family: var(--font-display);
+  font-size: var(--text-body);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0.25rem 0 0;
+}
+
+/* Responsive adjustments */
+
+/* Laptop */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .timeline {
+    padding-left: clamp(1.5rem, 3vw, 2.5rem);
+    padding-right: clamp(1.5rem, 3vw, 2.5rem);
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+  .timeline {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .line {
+    left: calc(1.5rem + 6px);
+  }
+
+  .entry {
+    gap: 1.25rem;
+    padding-bottom: 2rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .timeline {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .line {
+    left: calc(1rem + 6px);
+  }
+
+  .entry {
+    gap: 1rem;
+    padding-bottom: 1.75rem;
+    padding-left: 1.75rem;
+  }
+
+  .entryTitle {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+  }
+
+  .description {
+    font-size: max(0.875rem, var(--text-meta));
+  }
+}
