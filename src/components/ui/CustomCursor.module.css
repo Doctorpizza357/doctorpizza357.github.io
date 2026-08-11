@@ -1,0 +1,91 @@
+/* CustomCursor styles
+ * A custom cursor overlay that follows the mouse with smooth interpolation.
+ * Morphs near interactive elements (buttons, links, cards) with a scale/border effect.
+ * Hidden on touch devices and when prefers-reduced-motion is set.
+ */
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-accent);
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.3s var(--ease-out),
+    height 0.3s var(--ease-out),
+    border-color 0.3s var(--ease-out),
+    background-color 0.3s var(--ease-out),
+    opacity 0.3s var(--ease-out);
+  will-change: transform;
+  mix-blend-mode: difference;
+  opacity: 0;
+}
+
+.cursorVisible {
+  opacity: 1;
+}
+
+/* Dot in the center */
+.cursorDot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  pointer-events: none;
+  z-index: 100000;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-out);
+}
+
+.cursorDotVisible {
+  opacity: 1;
+}
+
+/* Hover state — expands ring, adds faint fill */
+.cursorHover {
+  width: 48px;
+  height: 48px;
+  border-color: var(--color-accent);
+  background-color: var(--color-accent-dim);
+}
+
+/* Active/click state — quick squeeze */
+.cursorActive {
+  width: 16px;
+  height: 16px;
+}
+
+/* Text hover — morphs into a vertical bar */
+.cursorText {
+  width: 3px;
+  height: 28px;
+  border-radius: 2px;
+  border-color: var(--color-accent);
+  background-color: var(--color-accent);
+}
+
+/* Hide on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .cursor,
+  .cursorDot {
+    display: none !important;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cursor,
+  .cursorDot {
+    display: none !important;
+  }
+}

@@ -13,7 +13,11 @@ type ProjectViewState =
   | { view: 'landing' }
   | { view: 'case-study'; projectId: string; returnScrollY: number };
 
-function ProjectsSection() {
+interface ProjectsSectionProps {
+  resetSignal?: number;
+}
+
+function ProjectsSection({ resetSignal = 0 }: ProjectsSectionProps) {
   const [viewState, setViewState] = useState<ProjectViewState>({ view: 'landing' });
   const [modalProjectId, setModalProjectId] = useState<string | null>(null);
 
@@ -67,6 +71,11 @@ function ProjectsSection() {
       });
     }
   }, [viewState]);
+
+  useEffect(() => {
+    setViewState({ view: 'landing' });
+    setModalProjectId(null);
+  }, [resetSignal]);
 
   useEffect(() => {
     if (viewState.view === 'landing' && isReturningToLanding.current) {

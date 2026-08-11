@@ -326,14 +326,14 @@ function ModelViewer({
           const rotatedBox = new THREE.Box3().setFromObject(model);
           const rotatedSize = rotatedBox.getSize(new THREE.Vector3());
 
-          // Position camera to fit model — slightly elevated, viewing from front-side
+          // Position camera to fit model — zoomed in, slightly elevated, viewing from front-side
           const maxDim = Math.max(rotatedSize.x, rotatedSize.y, rotatedSize.z);
           const fov = camera.fov * (Math.PI / 180);
-          const cameraDistance = (maxDim / 2) / Math.tan(fov / 2) * 1.5;
+          const cameraDistance = (maxDim / 2) / Math.tan(fov / 2) * 1.0;
           camera.position.set(
-            cameraDistance * 0.8,
-            cameraDistance * 0.4,
-            cameraDistance * 0.8
+            cameraDistance * 0.6,
+            cameraDistance * 0.3,
+            cameraDistance * 0.6
           );
           camera.lookAt(0, 0, 0);
           camera.updateProjectionMatrix();

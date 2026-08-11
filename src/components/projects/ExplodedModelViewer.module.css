@@ -1,0 +1,178 @@
+/* ExplodedModelViewer styles
+ * A scroll-driven 3D model viewer that explodes/separates parts
+ * as the user scrolls through the case study content.
+ *
+ * Layout: sticky 3D viewport on one side, scrollable content on the other.
+ */
+
+.container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  min-height: 200vh; /* Enough scroll distance for the animation */
+}
+
+/* Sticky 3D viewport — stays fixed while content scrolls */
+.viewport {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* Three.js canvas container */
+.canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background-color: var(--color-bg-secondary);
+}
+
+/* Loading state */
+.loadingOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: var(--color-bg-secondary);
+  border-radius: 8px;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--color-text-muted);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingText {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-text-secondary);
+}
+
+/* Scrollable content panel */
+.contentPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-block: 30vh; /* Pad top/bottom so content starts centered */
+}
+
+/* Individual step/section in the exploded view narrative */
+.step {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 0;
+  opacity: 0.3;
+  transition: opacity 0.4s var(--ease-out);
+}
+
+.stepActive {
+  opacity: 1;
+}
+
+.stepLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.stepHeading {
+  font-family: var(--font-display);
+  font-size: var(--text-subsection);
+  color: var(--color-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.stepBody {
+  font-family: var(--font-display);
+  font-size: var(--text-body);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+/* Progress indicator */
+.progressBar {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--color-bg-secondary);
+  transform: translateX(-50%);
+}
+
+.progressFill {
+  width: 100%;
+  background-color: var(--color-accent);
+  transform-origin: top;
+  transition: transform 0.1s linear;
+}
+
+/* Fallback for error state */
+.fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg-secondary);
+  border-radius: 8px;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-body);
+}
+
+/* Responsive: stack on mobile/tablet */
+@media (max-width: 991px) {
+  .container {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .viewport {
+    position: relative;
+    height: 50vh;
+    min-height: 300px;
+  }
+
+  .contentPanel {
+    padding-block: 2rem;
+  }
+
+  .step {
+    min-height: auto;
+    padding: 1.5rem 0;
+    opacity: 1; /* All visible on mobile since no scroll-sync */
+  }
+}
+
+/* Reduced motion — disable scroll-driven animation, show all parts */
+@media (prefers-reduced-motion: reduce) {
+  .step {
+    opacity: 1;
+  }
+}
