@@ -12,6 +12,10 @@
   align-items: flex-start;
   overflow: hidden;
   padding-block: var(--section-gap);
+  /* Break out of the constrained <main> to fill the full viewport width */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding-inline: max(var(--content-padding), calc((100vw - var(--content-max-width)) / 2 + var(--content-padding)));
 }
 
 /* Engineering grid overlay — subtle blueprint-like background */

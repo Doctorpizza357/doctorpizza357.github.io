@@ -40,19 +40,21 @@ function HeroVisual() {
 
     function resize() {
       const dpr = Math.min(window.devicePixelRatio, 2);
-      const rect = canvas!.getBoundingClientRect();
-      canvas!.width = rect.width * dpr;
-      canvas!.height = rect.height * dpr;
-      ctx!.scale(dpr, dpr);
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      canvas!.width = w * dpr;
+      canvas!.height = h * dpr;
+      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
     function initParticles() {
       particles.length = 0;
-      const rect = canvas!.getBoundingClientRect();
+      const w = window.innerWidth;
+      const h = window.innerHeight;
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         particles.push({
-          x: Math.random() * rect.width,
-          y: Math.random() * rect.height,
+          x: Math.random() * w,
+          y: Math.random() * h,
           vx: (Math.random() - 0.5) * 0.3,
           vy: (Math.random() - 0.5) * 0.3,
           size: Math.random() * 2 + 1,
@@ -62,9 +64,8 @@ function HeroVisual() {
     }
 
     function animate() {
-      const rect = canvas!.getBoundingClientRect();
-      const w = rect.width;
-      const h = rect.height;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
 
       ctx!.clearRect(0, 0, w, h);
 
@@ -126,9 +127,8 @@ function HeroVisual() {
 
     // Mouse tracking
     function handleMouseMove(e: MouseEvent) {
-      const rect = canvas!.getBoundingClientRect();
-      mouseRef.current.x = e.clientX - rect.left;
-      mouseRef.current.y = e.clientY - rect.top;
+      mouseRef.current.x = e.clientX;
+      mouseRef.current.y = e.clientY;
     }
 
     function handleMouseLeave() {
