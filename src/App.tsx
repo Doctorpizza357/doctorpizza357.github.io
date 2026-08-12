@@ -7,6 +7,7 @@ import { AnimationProvider } from '@/animation/AnimationProvider';
 import Layout from '@/components/Layout/Layout';
 import HeroSection from '@/components/sections/HeroSection';
 import ProjectsSection from '@/components/sections/ProjectsSection';
+import BlenderGallery from '@/components/gallery/BlenderGallery';
 import ContactSection from '@/components/sections/ContactSection';
 import { EasterEggToast } from '@/components/ui/EasterEggToast';
 import CustomCursor from '@/components/ui/CustomCursor';
@@ -24,6 +25,7 @@ gsap.registerPlugin(ScrollTrigger);
 const ALL_SECTIONS: SectionMeta[] = [
   { id: 'hero', label: 'Home' },
   { id: 'projects', label: 'Projects' },
+  { id: 'gallery', label: 'Renders' },
   { id: 'contact', label: 'Contact' },
 ];
 
@@ -59,6 +61,7 @@ function App() {
             tagline="Mechanical Engineering · Penn State 2030"
           />
           <ProjectsSection resetSignal={projectsResetSignal} />
+          <BlenderGallery />
           <ContactSection />
         </Layout>
         <CustomCursor />
