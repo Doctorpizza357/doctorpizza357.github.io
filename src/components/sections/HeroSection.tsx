@@ -27,7 +27,7 @@ function HeroSection({ name, tagline, visualElement }: HeroSectionProps) {
           <h1 className={styles.name}>{name}</h1>
           <p className={styles.tagline}>{tagline}</p>
           <p className={styles.descriptor}>
-            I design things that move, break, and get better.
+            Mehchanical Engineering, Coding, Robotics
           </p>
           {visualElement && (
             <div className={styles.visualElement}>{visualElement}</div>
