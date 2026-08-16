@@ -6,6 +6,7 @@ export interface CaseStudyData {
   description?: string;
   images?: string[];
   repositoryUrl?: string;
+  liveUrl?: string;
   caseStudySections?: CaseStudySection[];
 }
 
