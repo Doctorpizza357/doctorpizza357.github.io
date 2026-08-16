@@ -91,6 +91,7 @@ export const projects: ProjectData[] = [
     technologies: ['Fusion360', 'CAD', 'Fabrication', 'Prototyping', 'Java', 'CNC', 'Sheet Metal'],
     timeframe: '2023-2026',
     role: 'Mechanical Lead',
+    repositoryUrl: 'https://www.herndonrobotics.org/',
     media: [
       { type: 'image', src: '/assets/img/frc-116-robot.jpg', alt: 'FRC Team 116 competition robot on the field', caption: '2025 REEFSCAPE competition robot' },
       { type: 'cad-render', src: '/assets/img/frc-116-cad.png', alt: 'CAD render of the 2026 competition robot', caption: 'Full robot CAD assembly' },
@@ -151,6 +152,7 @@ export const projects: ProjectData[] = [
     timeframe: '2026',
     role: 'Developer',
     awards: ['First Place Overall - AWS AI Hackathon 2026', 'Best Use of AI - AWS AI Hackathon 2026'],
+    repositoryUrl: 'https://github.com/Doctorpizza357/AWS',
     media: [
       { type: 'screenshot', src: '/assets/img/stem-pathfindr-ui.png', alt: 'STEM PathfindR application interface showing career simulation', caption: 'Career simulation interface' },
     ],
