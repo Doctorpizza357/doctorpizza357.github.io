@@ -44,6 +44,17 @@ function CaseStudyView({ project, onClose }: CaseStudyViewProps) {
             View on GitHub →
           </a>
         )}
+
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.repoLink}
+          >
+            Visit Website →
+          </a>
+        )}
       </header>
 
       {project.caseStudySections && project.caseStudySections.length > 0 && (

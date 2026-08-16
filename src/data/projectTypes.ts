@@ -140,6 +140,8 @@ export interface ProjectData {
   visualTier: VisualTier;
   /** Optional repository URL (must be a valid URL) */
   repositoryUrl?: string;
+  /** Optional live/external website URL */
+  liveUrl?: string;
   /** Optional structured case study sections */
   caseStudySections?: CaseStudySection[];
   /** Optional awards or accolades to render as styled badges */

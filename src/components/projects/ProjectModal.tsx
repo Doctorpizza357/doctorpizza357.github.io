@@ -114,6 +114,16 @@ function ProjectModal({ project, onClose, onLearnMore }: ProjectModalProps) {
                 GitHub
               </a>
             )}
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                className={styles.repoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Website
+              </a>
+            )}
           </div>
         </div>
       </div>

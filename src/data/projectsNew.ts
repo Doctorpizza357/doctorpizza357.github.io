@@ -91,7 +91,7 @@ export const projects: ProjectData[] = [
     technologies: ['Fusion360', 'CAD', 'Fabrication', 'Prototyping', 'Java', 'CNC', 'Sheet Metal'],
     timeframe: '2023-2026',
     role: 'Mechanical Lead',
-    repositoryUrl: 'https://www.herndonrobotics.org/',
+    liveUrl: 'https://www.herndonrobotics.org/',
     media: [
       { type: 'image', src: '/assets/img/frc-116-robot.jpg', alt: 'FRC Team 116 competition robot on the field', caption: '2025 REEFSCAPE competition robot' },
       { type: 'cad-render', src: '/assets/img/frc-116-cad.png', alt: 'CAD render of the 2026 competition robot', caption: 'Full robot CAD assembly' },
