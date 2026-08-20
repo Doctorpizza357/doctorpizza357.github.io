@@ -1,5 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
-import { HashRouter } from 'react-router-dom';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -12,6 +11,7 @@ import ContactSection from '@/components/sections/ContactSection';
 import { EasterEggToast } from '@/components/ui/EasterEggToast';
 import CustomCursor from '@/components/ui/CustomCursor';
 import { useActiveSection } from '@/hooks/useActiveSection';
+import { useHashNavigation } from '@/hooks/useHashNavigation';
 import { useEasterEgg } from '@/hooks/useEasterEgg';
 import type { SectionMeta } from '@/components/Navigation/NavigationSystem';
 
@@ -19,8 +19,11 @@ import type { SectionMeta } from '@/components/Navigation/NavigationSystem';
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Streamlined: Hero → Projects → Contact
+ * Streamlined: Hero -> Projects -> Contact
  * Projects are the story. Let the work speak.
+ *
+ * URL hash sync:
+ *   #hero, #projects, #projects/rc-vehicle, #gallery, #contact
  */
 const ALL_SECTIONS: SectionMeta[] = [
   { id: 'hero', label: 'Home' },
@@ -33,6 +36,10 @@ function App() {
   const sectionIds = useMemo(() => ALL_SECTIONS.map((s) => s.id), []);
   const activeSection = useActiveSection(sectionIds);
   const [projectsResetSignal, setProjectsResetSignal] = useState(0);
+  const initialNavDone = useRef(false);
+
+  const { initialSection, initialProjectId, setProjectHash, clearProjectHash } =
+    useHashNavigation(activeSection);
 
   const { isTriggered: easterEggTriggered, dismiss: dismissEasterEgg } =
     useEasterEgg();
@@ -48,29 +55,54 @@ function App() {
     }
   }, []);
 
+  // Handle initial navigation from URL hash on mount
+  useEffect(() => {
+    if (initialNavDone.current) return;
+    initialNavDone.current = true;
+
+    if (!initialSection) return;
+
+    // Wait for DOM to be ready, then scroll and set project hash if needed
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        const el = document.getElementById(initialSection);
+        if (el) {
+          el.scrollIntoView({ behavior: 'instant' as ScrollBehavior, block: 'start' });
+        }
+        // If there's a project to open, set its hash tracker
+        if (initialProjectId) {
+          setProjectHash(initialProjectId);
+        }
+      }, 200);
+    });
+  }, [initialSection, initialProjectId, setProjectHash]);
+
   return (
-    <HashRouter>
-      <AnimationProvider>
-        <Layout
-          sections={ALL_SECTIONS}
-          activeSection={activeSection}
-          onNavigate={handleNavigate}
-        >
-          <HeroSection
-            name="Tomas Bentolila"
-            tagline="Mechanical Engineering · Penn State 2030"
-          />
-          <ProjectsSection resetSignal={projectsResetSignal} />
-          <BlenderGallery />
-          <ContactSection />
-        </Layout>
-        <CustomCursor />
-        <EasterEggToast
-          visible={easterEggTriggered}
-          onDismiss={dismissEasterEgg}
+    <AnimationProvider>
+      <Layout
+        sections={ALL_SECTIONS}
+        activeSection={activeSection}
+        onNavigate={handleNavigate}
+      >
+        <HeroSection
+          name="Tomas Bentolila"
+          tagline="Mechanical Engineering · Penn State 2030"
         />
-      </AnimationProvider>
-    </HashRouter>
+        <ProjectsSection
+          resetSignal={projectsResetSignal}
+          initialProjectId={initialProjectId}
+          onProjectView={setProjectHash}
+          onProjectClose={clearProjectHash}
+        />
+        <BlenderGallery />
+        <ContactSection />
+      </Layout>
+      <CustomCursor />
+      <EasterEggToast
+        visible={easterEggTriggered}
+        onDismiss={dismissEasterEgg}
+      />
+    </AnimationProvider>
   );
 }
 

@@ -15,15 +15,29 @@ type ProjectViewState =
 
 interface ProjectsSectionProps {
   resetSignal?: number;
+  initialProjectId?: string | null;
+  onProjectView?: (projectId: string) => void;
+  onProjectClose?: () => void;
 }
 
-function ProjectsSection({ resetSignal = 0 }: ProjectsSectionProps) {
+function ProjectsSection({ resetSignal = 0, initialProjectId, onProjectView, onProjectClose }: ProjectsSectionProps) {
   const [viewState, setViewState] = useState<ProjectViewState>({ view: 'landing' });
   const [modalProjectId, setModalProjectId] = useState<string | null>(null);
 
   const triggeringCardRef = useRef<HTMLElement | null>(null);
   const caseStudyHeadingRef = useRef<HTMLHeadingElement>(null!);
   const isReturningToLanding = useRef(false);
+  const prevResetSignal = useRef(resetSignal);
+
+  // Handle initial deep-link to a project case study (runs once on mount)
+  useEffect(() => {
+    if (initialProjectId && projects.find((p) => p.id === initialProjectId)) {
+      // Small delay to ensure this runs after any reset effects
+      setTimeout(() => {
+        setViewState({ view: 'case-study', projectId: initialProjectId, returnScrollY: 0 });
+      }, 50);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Card click → open modal (no scroll change)
   const handleProjectSelect = useCallback((projectId: string) => {
@@ -31,12 +45,13 @@ function ProjectsSection({ resetSignal = 0 }: ProjectsSectionProps) {
     setModalProjectId(projectId);
   }, []);
 
-  // Modal "Learn More" → navigate to case study
+  // Modal "Learn More" -> navigate to case study
   const handleLearnMore = useCallback(() => {
     if (!modalProjectId) return;
     const scrollY = window.scrollY;
     setModalProjectId(null);
     setViewState({ view: 'case-study', projectId: modalProjectId, returnScrollY: scrollY });
+    onProjectView?.(modalProjectId);
     // Scroll to top of projects section instantly (no smooth scroll)
     requestAnimationFrame(() => {
       const section = document.getElementById('projects');
@@ -44,24 +59,25 @@ function ProjectsSection({ resetSignal = 0 }: ProjectsSectionProps) {
         section.scrollIntoView({ block: 'start' });
       }
     });
-  }, [modalProjectId]);
+  }, [modalProjectId, onProjectView]);
 
   // Close modal
   const handleCloseModal = useCallback(() => {
     setModalProjectId(null);
   }, []);
 
-  // Back from case study — restore position instantly
+  // Back from case study -- restore position instantly
   const handleBack = useCallback(() => {
     if (viewState.view === 'case-study') {
       const { returnScrollY } = viewState;
       isReturningToLanding.current = true;
       setViewState({ view: 'landing' });
+      onProjectClose?.();
       requestAnimationFrame(() => {
         window.scrollTo({ top: returnScrollY, behavior: 'instant' as ScrollBehavior });
       });
     }
-  }, [viewState]);
+  }, [viewState, onProjectClose]);
 
   // Focus management
   useEffect(() => {
@@ -72,9 +88,14 @@ function ProjectsSection({ resetSignal = 0 }: ProjectsSectionProps) {
     }
   }, [viewState]);
 
+  // Reset when navigating to projects via nav (resetSignal changes)
   useEffect(() => {
-    setViewState({ view: 'landing' });
-    setModalProjectId(null);
+    // Only reset if the signal actually changed (not on initial mount)
+    if (resetSignal !== prevResetSignal.current) {
+      prevResetSignal.current = resetSignal;
+      setViewState({ view: 'landing' });
+      setModalProjectId(null);
+    }
   }, [resetSignal]);
 
   useEffect(() => {
