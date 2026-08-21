@@ -375,4 +375,29 @@ export const projects: ProjectData[] = [
       { key: 'approach', heading: 'Process', body: 'Designed a rule-based classification system mapping file extensions to categories (Documents, Images, Videos, Archives, Code, etc.). The sorter scans the target directory, classifies each file, creates category folders if needed, and moves files to their correct location.' },
       { key: 'systems', heading: 'Technical Details', body: 'Java application using NIO file operations for directory scanning and file movement. Rule engine maps extensions to categories with support for custom rules via configuration file. Handles naming conflicts by appending timestamps. Can run as a one-shot sort or watch mode for continuous organization.' },
     ],
+  },
+
+  // ─── 14. CMU Minecraft ──────────────────────────────────────────────────────
+  {
+    id: 'cmu-minecraft',
+    title: 'CMU Minecraft',
+    description:
+      'A 3D voxel-based Minecraft clone built entirely in CMU Graphics with a custom software-rendered 3D engine featuring perspective projection, face culling, and real-time block interaction.',
+    category: ['SOFTWARE'],
+    technologies: ['Python', 'CMU Graphics', '3D Rendering', 'Raycasting', 'Physics', 'Game Development'],
+    timeframe: '2026',
+    role: 'CS Final Project',
+    repositoryUrl: 'https://github.com/Doctorpizza357/CMU-Minecraft',
+    media: [
+      { type: 'screenshot', src: '/assets/img/cmu-minecraft-splash.png', alt: 'CMU Minecraft 3D voxel world rendered in CMU Graphics', caption: 'Custom 3D engine running in CMU Graphics' },
+    ],
+    displayOrder: 4,
+    visualTier: 'standard',
+    caseStudySections: [
+      { key: 'problem', heading: 'The Challenge', body: 'Build a complete 3D game using only CMU Graphics - a 2D canvas library with no 3D support, no shaders, and no GPU acceleration. Every pixel of the 3D world had to be projected, culled, and drawn using basic polygon primitives on a 2D surface.' },
+      { key: 'rendering', heading: '3D Rendering Engine', body: 'Built a custom software renderer from scratch: camera-space transformation with yaw/pitch rotation, perspective division for screen projection, back-face culling and neighbor occlusion to reduce draw calls, painter\'s algorithm for depth sorting, and block face caching to avoid redundant projection when the camera is stationary. All rendering uses CMU Graphics primitives (Polygon, Line, Rect) - no external 3D libraries.' },
+      { key: 'gameplay', heading: 'Gameplay Systems', body: 'Full Minecraft-style interaction: raycasting for block placement and breaking, gravity and collision detection, fall damage in Survival mode, creative-style free flight, a 24-slot inventory with drag-and-drop, an 8-slot hotbar, health and hunger bars, and an in-game chat system with /tp teleport commands.' },
+      { key: 'optimization', heading: 'Optimization', body: 'Running a 3D engine on a 2D canvas library meant every frame had to be fast. Face exposure culling skips faces hidden by neighboring blocks. Block face caching avoids re-projecting geometry when the camera hasn\'t moved. Render distance limiting keeps the visible block count manageable. These optimizations brought frame rates from single digits to playable.' },
+      { key: 'result', heading: 'Result', body: 'A playable Minecraft clone with full 3D navigation, block interaction, physics, inventory management, and game state menus - all running in a library designed for 2D educational graphics. Demonstrates that understanding the math behind rendering (projection, culling, depth sorting) lets you build 3D experiences anywhere, even without a GPU.' },
+    ],
   },]

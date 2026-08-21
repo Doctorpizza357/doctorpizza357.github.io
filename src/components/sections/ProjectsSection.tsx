@@ -52,11 +52,12 @@ function ProjectsSection({ resetSignal = 0, initialProjectId, onProjectView, onP
     setModalProjectId(null);
     setViewState({ view: 'case-study', projectId: modalProjectId, returnScrollY: scrollY });
     onProjectView?.(modalProjectId);
-    // Scroll to top of projects section instantly (no smooth scroll)
+    // Scroll to top of case study content with a small offset
     requestAnimationFrame(() => {
       const section = document.getElementById('projects');
       if (section) {
-        section.scrollIntoView({ block: 'start' });
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: sectionTop + 10, behavior: 'instant' as ScrollBehavior });
       }
     });
   }, [modalProjectId, onProjectView]);
