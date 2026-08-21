@@ -96,8 +96,9 @@ function ProjectsSection({ resetSignal = 0, initialProjectId, onProjectView, onP
       prevResetSignal.current = resetSignal;
       setViewState({ view: 'landing' });
       setModalProjectId(null);
+      onProjectClose?.();
     }
-  }, [resetSignal]);
+  }, [resetSignal, onProjectClose]);
 
   useEffect(() => {
     if (viewState.view === 'landing' && isReturningToLanding.current) {

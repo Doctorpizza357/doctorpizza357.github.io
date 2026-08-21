@@ -88,10 +88,12 @@ function CaseStudyViewNew({ project, onBack, headingRef }: CaseStudyViewProps) {
         )}
       </header>
 
-      {/* Project-level media (3D models, hero images) */}
+      {/* Project-level media (3D models, videos only — static images shown on card) */}
       {project.media && project.media.length > 0 && (
         <div className={styles.sectionMedia}>
-          {project.media.map((media, mediaIndex) => (
+          {project.media
+            .filter((m) => m.type === '3d-model' || m.type === 'video')
+            .map((media, mediaIndex) => (
             <div key={`project-media-${mediaIndex}`}>
               <MediaEmbed media={media} />
             </div>
