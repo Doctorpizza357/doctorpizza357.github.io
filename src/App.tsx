@@ -9,7 +9,6 @@ import ProjectsSection from '@/components/sections/ProjectsSection';
 import BlenderGallery from '@/components/gallery/BlenderGallery';
 import ContactSection from '@/components/sections/ContactSection';
 import { EasterEggToast } from '@/components/ui/EasterEggToast';
-import CustomCursor from '@/components/ui/CustomCursor';
 import { useActiveSection } from '@/hooks/useActiveSection';
 import { useHashNavigation } from '@/hooks/useHashNavigation';
 import { useEasterEgg } from '@/hooks/useEasterEgg';
@@ -97,7 +96,6 @@ function App() {
         <BlenderGallery />
         <ContactSection />
       </Layout>
-      <CustomCursor />
       <EasterEggToast
         visible={easterEggTriggered}
         onDismiss={dismissEasterEgg}
