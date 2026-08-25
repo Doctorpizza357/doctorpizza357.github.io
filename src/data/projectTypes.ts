@@ -29,7 +29,8 @@ export type MediaType =
   | 'gif'
   | 'diagram'
   | 'screenshot'
-  | 'pdf';
+  | 'pdf'
+  | 'embed';
 
 /** Visual weight tier determining card layout prominence */
 export type VisualTier = 'flagship' | 'standard';

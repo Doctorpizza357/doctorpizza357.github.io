@@ -83,6 +83,8 @@ function MediaEmbed({ media, lazy = true }: MediaEmbedProps) {
         return renderModel();
       case 'pdf':
         return renderPdf();
+      case 'embed':
+        return renderEmbed();
       default:
         return null;
     }
@@ -138,6 +140,17 @@ function MediaEmbed({ media, lazy = true }: MediaEmbedProps) {
         className={styles.mediaPdf}
         src={media.src}
         title={media.alt}
+      />
+    );
+  }
+
+  function renderEmbed() {
+    return (
+      <iframe
+        className={styles.mediaEmbed}
+        src={media.src}
+        title={media.alt}
+        allow="fullscreen"
       />
     );
   }

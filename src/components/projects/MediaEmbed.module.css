@@ -58,6 +58,17 @@
   border-radius: 4px;
 }
 
+/* Embedded iframe (games, interactive content) */
+.mediaEmbed {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 410 / 460;
+  border: 1px solid var(--color-bg-secondary);
+  border-radius: 8px;
+  margin: 0 auto;
+  display: block;
+}
+
 /* 3D model container */
 .modelContainer {
   width: 100%;
