@@ -1,0 +1,161 @@
+/* Lightbox — accessible modal for full-resolution renders (Req 12) */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background-color: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: lightboxFadeIn var(--duration-fast) var(--ease-out);
+}
+
+.content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.media {
+  max-width: 90vw;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  display: block;
+  background-color: var(--color-surface-card);
+}
+
+.caption {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.captionSoftware {
+  color: var(--color-accent);
+  margin-left: 0.5rem;
+}
+
+/* Close control */
+.close {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--duration-fast) var(--ease-out);
+  z-index: 1;
+}
+
+.close:hover {
+  background-color: var(--color-surface-card);
+}
+
+.close:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* Prev / Next navigation controls */
+.nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--duration-fast) var(--ease-out);
+  z-index: 1;
+}
+
+.nav:hover:not(:disabled) {
+  background-color: var(--color-surface-card);
+}
+
+.nav:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.nav:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.prev {
+  left: 1.5rem;
+}
+
+.next {
+  right: 1.5rem;
+}
+
+/* Load-failure message (Req 12.9) */
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 240px;
+  min-height: 180px;
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background-color: var(--color-surface-card);
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  text-align: center;
+}
+
+@keyframes lightboxFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 767px) {
+  .backdrop {
+    padding: 1rem;
+  }
+
+  .close {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .prev {
+    left: 0.75rem;
+  }
+
+  .next {
+    right: 0.75rem;
+  }
+}
