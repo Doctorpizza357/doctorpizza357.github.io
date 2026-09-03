@@ -60,44 +60,4 @@ export const rcVehicleExplodedSteps: ExplodedStep[] = [
   },
 ];
 
-/**
- * Exploded view steps for the Wankel Rotary Engine.
- */
-export const wankelExplodedSteps: ExplodedStep[] = [
-  {
-    id: 'assembled',
-    label: '01',
-    heading: 'Complete Engine',
-    body: 'The Wankel rotary engine in its assembled state — housing, triangular rotor, and eccentric shaft forming a compact power unit.',
-    meshPatterns: [],
-    explodeOffset: [0, 0, 0],
-    cameraPosition: [2, 1, 2],
-  },
-  {
-    id: 'housing-separate',
-    label: '02',
-    heading: 'Epitrochoidal Housing',
-    body: 'The housing profile is generated from an epitrochoidal curve — a path traced by a point on a circle rolling around another circle. This mathematically exact shape maintains three sealing chambers.',
-    meshPatterns: ['housing', 'case', 'outer', 'wall'],
-    explodeOffset: [0, 0.5, 0],
-    cameraPosition: [1.5, 1.5, 2],
-  },
-  {
-    id: 'rotor-reveal',
-    label: '03',
-    heading: 'Triangular Rotor',
-    body: 'The triangular rotor with three apex seals orbits eccentrically within the housing. Each face creates a separate combustion chamber that cycles through intake, compression, combustion, and exhaust.',
-    meshPatterns: ['rotor', 'triangle', 'apex'],
-    explodeOffset: [0, 0.3, 0.4],
-    cameraPosition: [2, 0.5, 2.5],
-  },
-  {
-    id: 'shaft-reveal',
-    label: '04',
-    heading: 'Eccentric Shaft',
-    body: 'The eccentric shaft converts the rotor\'s orbital motion into usable rotational output. Its offset bearing surface is what drives the rotor\'s unique planetary motion.',
-    meshPatterns: ['shaft', 'eccentric', 'bearing'],
-    explodeOffset: [0, -0.4, 0],
-    cameraPosition: [1, 0, 2.5],
-  },
-];
+

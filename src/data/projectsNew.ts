@@ -18,14 +18,8 @@ export const rcVehicleAnnotations: AnnotationData[] = [
   { id: 'wheel', label: 'Wheel Assembly', position: [0.15, 0.02, 0.1], cameraTarget: [0.15, 0.04, 0.2] },
 ];
 
-export const wankelEngineAnnotations: AnnotationData[] = [
-  { id: 'rotor', label: 'Triangular Rotor', position: [0, 0, 0], cameraTarget: [0, 0, 0.25] },
-  { id: 'housing', label: 'Epitrochoidal Housing', position: [0.1, 0.05, 0], cameraTarget: [0.1, 0.05, 0.2] },
-  { id: 'eccentric-shaft', label: 'Eccentric Shaft', position: [0, -0.05, 0], cameraTarget: [0, -0.05, 0.2] },
-];
-
 export const projects: ProjectData[] = [
-  // ─── 1. RC Vehicle (Flagship) ────────────────────────────────────────────────
+  // ─── RC Vehicle (Flagship) — ordered after Personal Server ───────────────────
   {
     id: 'rc-vehicle',
     title: 'RC Vehicle',
@@ -39,7 +33,7 @@ export const projects: ProjectData[] = [
       { type: '3d-model', src: '/assets/models/rc-vehicle.glb', alt: 'Interactive 3D model of the RC vehicle chassis and suspension assembly', caption: 'RC Vehicle - full assembly, Version 03' },
       { type: 'cad-render', src: '/assets/img/rc-vehicle-render.png', alt: 'CAD render of RC vehicle showing chassis and suspension layout', caption: 'Final design render' },
     ],
-    displayOrder: 1,
+    displayOrder: 6,
     visualTier: 'flagship',
     caseStudySections: [
       { key: 'problem', heading: 'The Problem', body: 'Off-the-shelf RC cars compromise on suspension geometry, chassis rigidity, and component accessibility. I wanted a vehicle where every dimension was intentional - designed from scratch in CAD with full parametric control over the geometry, so changes to one subsystem propagate cleanly through the rest of the assembly.' },
@@ -52,36 +46,7 @@ export const projects: ProjectData[] = [
     ],
   },
 
-  // ─── 2. Wankel Rotary Engine ─────────────────────────────────────────────────
-  {
-    id: 'wankel-engine',
-    title: 'Wankel Rotary Engine',
-    description:
-      'Detailed CAD model of a Wankel rotary engine with epitrochoidal rotor geometry, housing, and eccentric shaft - modeled to understand unconventional engine architectures through parametric design.',
-    category: ['MECHANICAL', 'CAD'],
-    technologies: ['Onshape', 'CAD Modeling', 'Mechanical Design', 'Engine Theory'],
-    timeframe: '2024',
-    role: 'Personal Project',
-    media: [
-      { type: '3d-model', src: '/assets/models/wankel-engine.glb', alt: 'Interactive 3D model of the Wankel rotary engine assembly', caption: 'Wankel Rotary Engine - full assembly' },
-      { type: 'cad-render', src: '/assets/img/wankel-engine-render.png', alt: 'CAD render of Wankel rotary engine showing rotor and housing', caption: 'Engine assembly render' },
-    ],
-    displayOrder: 2,
-    visualTier: 'standard',
-    caseStudySections: [
-      { key: 'problem', heading: 'The Problem', body: 'Wanted to understand the geometry behind rotary engines - specifically how an epitrochoidal curve defines the housing shape and how the triangular rotor maintains three simultaneous sealing surfaces as it orbits eccentrically. The best way to learn complex geometry is to model it parametrically.' },
-      { key: 'approach', heading: 'Approach', body: 'Researched the mathematical relationships between the rotor, housing profile, and eccentric shaft. Built the model bottom-up: eccentric shaft first, then the rotor profile using the geometric constraints, and finally the housing generated from the epitrochoidal curve equations. Each component is parametrically linked to a shared set of engine dimensions.' },
-      { key: 'systems', heading: 'Engine Components', body: 'The housing profile is generated from the epitrochoidal curve - a path traced by a point on a circle rolling around another circle. The triangular rotor has three apex seals that maintain contact with the housing throughout rotation. The eccentric shaft converts the rotor orbital motion into usable rotational output. All three components share parametric dimensions so scaling the engine preserves correct geometry.', media: [
-        { type: 'cad-render', src: '/assets/img/wankel-engine-render.png', alt: 'Triangular rotor with apex seals', caption: 'Triangular rotor with apex seals' },
-        { type: 'cad-render', src: '/assets/img/wankel-housing.png', alt: 'Wankel engine epitrochoidal housing profile', caption: 'Epitrochoidal housing geometry' },
-        { type: 'cad-render', src: '/assets/img/wankel-eccentric-shaft.png', alt: 'Eccentric shaft driving rotor motion', caption: 'Eccentric shaft' },
-      ] },
-      { key: 'decisions', heading: 'Design Decisions', body: 'Modeled the housing using equation-driven curves rather than approximating with arcs - this keeps the geometry mathematically exact regardless of scale. Used configurations to show the rotor at different phase positions within the housing. Chose to model sealing surfaces as reference geometry rather than physical parts to keep the assembly clean.' },
-      { key: 'lessons-learned', heading: 'Lessons Learned', body: 'Equation-driven geometry in SolidWorks is powerful but requires careful constraint management to avoid circular references. Complex surface geometry is easier to debug when broken into small, verifiable steps. Understanding the math before touching CAD saves hours of rework.' },
-    ],
-  },
-
-  // ─── 3. FRC Team 116 ─────────────────────────────────────────────────────────
+  // ─── 2. FRC Team 116 ─────────────────────────────────────────────────────────
   {
     id: 'frc-116',
     title: 'FRC Team 116',
@@ -207,7 +172,7 @@ export const projects: ProjectData[] = [
     media: [
       { type: 'screenshot', src: '/assets/img/pathFinding.png', alt: 'Pathfinding algorithm visualizer showing A* traversal on a grid', caption: 'A* algorithm finding the shortest path' },
     ],
-    displayOrder: 6,
+    displayOrder: 7,
     visualTier: 'standard',
     caseStudySections: [
       { key: 'problem', heading: 'Context', body: 'Pathfinding algorithms are foundational to computer science but hard to understand from pseudocode alone. Built this visualizer to make the traversal behavior of BFS, DFS, and A* tangible - watching nodes expand in real time makes the performance differences between algorithms immediately obvious.' },
@@ -230,7 +195,7 @@ export const projects: ProjectData[] = [
     media: [
       { type: 'screenshot', src: '/assets/img/sortingVisualizer.png', alt: 'Sorting visualizer showing merge sort in progress', caption: 'Merge sort - divide and conquer in action' },
     ],
-    displayOrder: 7,
+    displayOrder: 8,
     visualTier: 'standard',
     caseStudySections: [
       { key: 'problem', heading: 'Context', body: 'Sorting algorithms have different time complexities and behaviors that are hard to appreciate from Big-O notation alone. Watching bubble sort struggle on 500 elements while merge sort breezes through makes O(n²) vs O(n log n) viscerally clear.' },
@@ -253,7 +218,7 @@ export const projects: ProjectData[] = [
     media: [
       { type: 'screenshot', src: '/assets/img/networkTraffic.png', alt: 'Network traffic analysis showing protocol distribution', caption: 'Protocol distribution analysis' },
     ],
-    displayOrder: 8,
+    displayOrder: 9,
     visualTier: 'standard',
     caseStudySections: [
       { key: 'problem', heading: 'Context', body: 'Wanted hands-on understanding of network protocols beyond textbook definitions. Built a tool that captures live packets, parses protocol headers, and generates visual summaries - making invisible network activity tangible and analyzable.' },
@@ -276,7 +241,7 @@ export const projects: ProjectData[] = [
     media: [
       { type: 'screenshot', src: '/assets/img/OSMNX.png', alt: 'Shortest path visualization on a real road network', caption: 'Shortest path on real road data' },
     ],
-    displayOrder: 9,
+    displayOrder: 10,
     visualTier: 'standard',
     caseStudySections: [
       { key: 'problem', heading: 'Context', body: 'After building a grid-based pathfinding visualizer, wanted to apply the same algorithms to real geographic data. The jump from uniform grids to weighted road networks with irregular topology introduces real-world complexity - one-way streets, varying road speeds, and non-euclidean distances.' },
@@ -299,7 +264,7 @@ export const projects: ProjectData[] = [
     media: [
       { type: 'screenshot', src: '/assets/img/browser.png', alt: 'Pizza Browser with multiple tabs open', caption: 'Tabbed browsing interface' },
     ],
-    displayOrder: 10,
+    displayOrder: 11,
     visualTier: 'standard',
     caseStudySections: [
       { key: 'problem', heading: 'Context', body: 'We use browsers every day but rarely think about how they work. Built a browser from scratch to understand URL parsing, HTTP requests, page rendering, tab management, and history tracking at the application level.' },
@@ -322,7 +287,7 @@ export const projects: ProjectData[] = [
     media: [
       { type: 'screenshot', src: '/assets/img/ticTacToe.png', alt: 'Tic-Tac-Toe game with AI opponent', caption: 'AI evaluating optimal move' },
     ],
-    displayOrder: 11,
+    displayOrder: 12,
     visualTier: 'standard',
     caseStudySections: [
       { key: 'problem', heading: 'Context', body: 'Tic-Tac-Toe is a solved game - with perfect play, neither side can win. Implemented the minimax algorithm to create an AI that plays optimally in every situation, exploring how adversarial search works in a domain small enough to be fully enumerable.' },
@@ -345,7 +310,7 @@ export const projects: ProjectData[] = [
     media: [
       { type: 'screenshot', src: '/assets/img/autoTyper.jpg', alt: 'Auto Typer GUI with speed and text configuration', caption: 'Version 3 interface' },
     ],
-    displayOrder: 12,
+    displayOrder: 13,
     visualTier: 'standard',
     caseStudySections: [
       { key: 'problem', heading: 'Context', body: 'Repetitive typing tasks are tedious and error-prone. Built an automation tool that types pre-configured text at human-like speeds, triggered by hotkeys. Iterated through three versions adding reliability, configurability, and a proper GUI.' },
@@ -368,7 +333,7 @@ export const projects: ProjectData[] = [
     media: [
       { type: 'screenshot', src: '/assets/img/directorySorter.png', alt: 'Directory Sorter organizing files by category', caption: 'Automatic file categorization' },
     ],
-    displayOrder: 13,
+    displayOrder: 14,
     visualTier: 'standard',
     caseStudySections: [
       { key: 'problem', heading: 'Context', body: 'Downloads folders accumulate hundreds of unsorted files - PDFs mixed with images mixed with installers. Built a tool that watches a directory and automatically sorts files into categorized subfolders based on their extension and type.' },
