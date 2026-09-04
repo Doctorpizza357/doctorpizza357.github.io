@@ -365,4 +365,29 @@ export const projects: ProjectData[] = [
       { key: 'optimization', heading: 'Optimization', body: 'Running a 3D engine on a 2D canvas library meant every frame had to be fast. Face exposure culling skips faces hidden by neighboring blocks. Block face caching avoids re-projecting geometry when the camera hasn\'t moved. Render distance limiting keeps the visible block count manageable. These optimizations brought frame rates from single digits to playable.' },
       { key: 'result', heading: 'Result', body: 'A playable Minecraft clone with full 3D navigation, block interaction, physics, inventory management, and game state menus - all running in a library designed for 2D educational graphics. Demonstrates that understanding the math behind rendering (projection, culling, depth sorting) lets you build 3D experiences anywhere, even without a GPU.', media: [{ type: 'embed', src: 'https://academy.cs.cmu.edu/sharing/redGoat108501/embed', alt: 'CMU Minecraft playable demo', caption: 'Play CMU Minecraft in the browser' }] },
     ],
-  },]
+  },
+
+  // ─── Speedcubing Timer ────────────────────────────────────────────────────────
+  {
+    id: 'speedcubing-timer',
+    title: 'Speedcubing Timer',
+    description:
+      'An offline-first web app for Rubik\'s Cube speedsolvers: WCA-accurate timing with inspection and penalties, session statistics, an SRS algorithm trainer, and merge-based cross-device cloud sync.',
+    category: ['SOFTWARE', 'SYSTEMS'],
+    technologies: ['React', 'TypeScript', 'Zustand', 'Dexie', 'IndexedDB', 'cubing.js', 'Recharts', 'Tailwind CSS', 'Firebase', 'Vite', 'Vitest', 'fast-check'],
+    timeframe: '2026',
+    role: 'Personal Project',
+    liveUrl: 'https://doctorpizza357.github.io/cube-timer/',
+    media: [
+      { type: 'screenshot', src: '/assets/img/cube-timer.png', alt: 'Speedcubing Timer interface showing solve timer, scramble, and session statistics', caption: 'Timer with scramble and session stats' },
+    ],
+    displayOrder: 5,
+    visualTier: 'standard',
+    caseStudySections: [
+      { key: 'problem', heading: 'The Problem', body: 'Speedcubers practice a full loop - scramble, time, analyze, improve - and need a timer that is WCA-accurate, works anywhere without a network, and keeps detailed statistics. Most web timers either break offline or lose data when the same account is used across devices. I wanted an offline-first app where the cloud is an optional enhancement, not a dependency.' },
+      { key: 'approach', heading: 'Approach', body: 'Built a client-only, offline-first single-page app. IndexedDB (via Dexie) is the source of truth so the app is fully functional with no connection. Optional Google sign-in layers on merge-based cloud sync so a cuber\'s solves follow them across devices. Pure, framework-free logic cores (statistics, scramble generation, cube-state reconstruction) sit beneath a thin React/Zustand UI, keeping the testable logic isolated from rendering.' },
+      { key: 'systems', heading: 'Features', body: 'WCA-style timing with 15-second inspection, +2/DNF penalties, and configurable hold-to-start. Official scramble generation with interactive 2D-net and 3D visualizers via cubing.js. Session management with rolling averages (Ao5/12/50/100), best single/average tracking, and session mean. Solve-phase cadence tracking (Cross / F2L / OLL / PLL splits) surfaces a solver\'s weakest stage. An algorithm trainer with spaced-repetition scheduling, plus Zen Mode (distraction-free) and Ghost Mode (pace against a target time). csTimer import migrates existing solve history.' },
+      { key: 'decisions', heading: 'Engineering Highlights', body: 'Offline-first with IndexedDB as the source of truth and the cloud as an optional enhancement. Two-way sync uses record-level merging with last-write-wins and deletion tombstones, so solves recorded offline on multiple devices reconcile instead of overwriting each other. A layered architecture (React components → Zustand stores → a single storage gateway → Dexie) keeps persistence concerns isolated. Pure logic cores are verified with unit tests and property-based tests (fast-check), and the app ships via an automated GitHub Actions CI/CD pipeline to GitHub Pages.' },
+    ],
+  },
+]
