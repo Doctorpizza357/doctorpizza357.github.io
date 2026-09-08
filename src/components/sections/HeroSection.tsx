@@ -33,12 +33,6 @@ function HeroSection({ name, tagline, visualElement }: HeroSectionProps) {
             <div className={styles.visualElement}>{visualElement}</div>
           )}
         </header>
-
-        {/* Scroll indicator */}
-        <div className={styles.scrollIndicator} aria-hidden="true">
-          <span className={styles.scrollLine} />
-          <span className={styles.scrollLabel}>Scroll</span>
-        </div>
       </div>
     </SectionWrapper>
   );
