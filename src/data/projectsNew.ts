@@ -46,6 +46,32 @@ export const projects: ProjectData[] = [
     ],
   },
 
+  // ─── Parametric Shooter (Fully Parametric FRC Flywheel Shooter) ──────────────
+  {
+    id: 'parametric-shooter',
+    title: 'Parametric Adjustable-Hood Shooter',
+    description:
+      'A fully parametric FRC flywheel shooter designed in Onshape, driven by a single configuration variable (ball diameter). Changing the ball size automatically updates the hood, side plates, flywheel covers, rack-and-pinion geometry, and every dependent dimension.',
+    category: ['MECHANICAL', 'CAD', 'ROBOTICS'],
+    technologies: ['Onshape', 'Parametric Design', 'CAD Modeling', 'Rack & Pinion', 'Design Variables', 'Mechanism Design'],
+    timeframe: '2026',
+    role: 'Personal Project',
+    liveUrl: 'https://cad.onshape.com/documents/77acf5102214b28c1eb444ec/w/a53bf309b975c55f31ee16b7/e/23abbcdfb28622bfbec11603',
+    media: [
+      { type: 'cad-render', src: '/assets/img/parametric_shooter.png', alt: 'CAD render of a parametric adjustable-hood flywheel shooter with a green ball loaded', caption: 'Adjustable-hood shooter assembly - hood, flywheel, and rack-and-pinion drive' },
+      { type: 'cad-render', src: '/assets/img/parametric_shooter_variables.png', alt: 'Onshape variable table listing ball diameter, compression, wheel diameter, and dependent shooter dimensions', caption: 'Master variable table - every dimension links back to ball_dia' },
+    ],
+    displayOrder: 2,
+    visualTier: 'standard',
+    caseStudySections: [
+      { key: 'problem', heading: 'The Problem', body: 'FRC game pieces change every season, and a shooter tuned for one ball size rarely transfers to the next. Rebuilding a flywheel shooter from scratch each year - hood curvature, compression, side-plate spacing, gear geometry - is slow and error-prone. I wanted a single model where changing one number, the ball diameter, correctly reshapes the entire mechanism.' },
+      { key: 'approach', heading: 'Approach', body: 'I built the shooter around a master variable table with ball_dia as the root driver. Every other dimension is expressed as an equation relative to that variable and a small set of design intents (radial compression, wall thickness, wheel diameter, exit angle). Hood radius, shooter inner width, rack pitch radius, pinion center distance, and flywheel cover arcs all derive from those inputs, so the geometry stays internally consistent at any ball size.' },
+      { key: 'systems', heading: 'Parametric System', body: 'The variable table defines the design contract: ball_dia (game piece), compression (radial pinch applied to the ball), ball_clearance_w (lateral clearance), wheel_dia, wall_thickness, and hood_exit_angle drive downstream values like hood_inner_r, shooter_inner_w, rack_pitch_r, pinion_center_dist, rack_teeth, and the flywheel cover inner/outer arc diameters. Because relationships are captured as equations rather than fixed dimensions, the hood, side plates, and covers regenerate together instead of drifting out of sync.', media: [{ type: 'cad-render', src: '/assets/img/parametric_shooter_variables.png', alt: 'Onshape variable table with linked shooter dimensions', caption: 'Design variables - ball_dia propagates through the whole assembly' }] },
+      { key: 'decisions', heading: 'Engineering Decisions', body: 'Chose an adjustable hood on a rack-and-pinion so exit angle can be tuned without re-modeling. Derived rack_teeth from a theoretical full-circle pitch to keep the curved rack manufacturable and meshing correctly across hood positions. Applied compression as a radial variable so the ball-to-wheel pinch stays proportional as ball_dia changes, preserving consistent shot energy. Kept wall_thickness and clearances as named variables so the same model can target different manufacturing processes.' },
+      { key: 'lessons-learned', heading: 'Lessons Learned', body: 'A parametric model is only as good as its variable hierarchy - deciding which values are drivers and which are derived is the real design work. Front-loading that structure meant a new game piece becomes a one-number change instead of a rebuild. It also reinforced that geometry which "looks parametric" can still hide fixed dimensions that break the chain, so validating regeneration across the full ball-size range was essential.' },
+    ],
+  },
+
   // ─── 2. FRC Team 116 ─────────────────────────────────────────────────────────
   {
     id: 'frc-116',
