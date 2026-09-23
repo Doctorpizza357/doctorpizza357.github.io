@@ -19,7 +19,6 @@ export const rcVehicleAnnotations: AnnotationData[] = [
 ];
 
 export const projects: ProjectData[] = [
-  // ─── RC Vehicle (Flagship) — ordered after Personal Server ───────────────────
   {
     id: 'rc-vehicle',
     title: 'RC Vehicle',
@@ -414,6 +413,32 @@ export const projects: ProjectData[] = [
       { key: 'approach', heading: 'Approach', body: 'Built a client-only, offline-first single-page app. IndexedDB (via Dexie) is the source of truth so the app is fully functional with no connection. Optional Google sign-in layers on merge-based cloud sync so a cuber\'s solves follow them across devices. Pure, framework-free logic cores (statistics, scramble generation, cube-state reconstruction) sit beneath a thin React/Zustand UI, keeping the testable logic isolated from rendering.' },
       { key: 'systems', heading: 'Features', body: 'WCA-style timing with 15-second inspection, +2/DNF penalties, and configurable hold-to-start. Official scramble generation with interactive 2D-net and 3D visualizers via cubing.js. Session management with rolling averages (Ao5/12/50/100), best single/average tracking, and session mean. Solve-phase cadence tracking (Cross / F2L / OLL / PLL splits) surfaces a solver\'s weakest stage. An algorithm trainer with spaced-repetition scheduling, plus Zen Mode (distraction-free) and Ghost Mode (pace against a target time). csTimer import migrates existing solve history.' },
       { key: 'decisions', heading: 'Engineering Highlights', body: 'Offline-first with IndexedDB as the source of truth and the cloud as an optional enhancement. Two-way sync uses record-level merging with last-write-wins and deletion tombstones, so solves recorded offline on multiple devices reconcile instead of overwriting each other. A layered architecture (React components → Zustand stores → a single storage gateway → Dexie) keeps persistence concerns isolated. Pure logic cores are verified with unit tests and property-based tests (fast-check), and the app ships via an automated GitHub Actions CI/CD pipeline to GitHub Pages.' },
+    ],
+  },
+
+  // ─── NittanyBites ────────────────────────────────────────────────────────────
+  {
+    id: 'nittany-bites',
+    title: 'NittanyBites',
+    description:
+      'Personal Penn State dining review and analytics platform for logging campus meals, rating individual dishes, and turning dining history into actionable insights.',
+    category: ['SOFTWARE', 'AI', 'SYSTEMS'],
+    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Firebase Auth', 'Cloud Firestore', 'SWR', 'Recharts', 'Framer Motion'],
+    timeframe: '2026',
+    role: 'Personal Project',
+    liveUrl: 'https://doctorpizza357.github.io/NittanyBites/',
+    media: [
+      { type: 'screenshot', src: '/assets/img/nittany_bites.png', alt: 'NittanyBites dining review and analytics platform', caption: 'NittanyBites dining dashboard' },
+    ],
+    displayOrder: 5,
+    visualTier: 'standard',
+    caseStudySections: [
+      { key: 'problem', heading: 'Why I Built It', body: 'I kept forgetting which dishes I liked at Penn State dining halls. I also wanted an easier way to compare locations and see whether my ratings changed over time, instead of relying on memory or scattered notes.' },
+      { key: 'approach', heading: 'How It Works', body: 'NittanyBites lets me log lunch or dinner, choose the dining hall and meal type, rate each dish, and add notes. I can look back through the same data in a calendar or list view, then filter it by location or meal.' },
+      { key: 'analytics', heading: 'Ratings and Trends', body: 'The rankings show which dishes I rate highest, while the charts show how my ratings change over time. SWR handles updates from Firestore so the views stay current without needing a full page refresh.' },
+      { key: 'ai-logging', heading: 'AI Meal Logging', body: 'The AI logging feature helps turn a quick description of a meal into a draft entry. It can identify dishes and ratings, but I can review and change everything before saving it.' },
+      { key: 'data-and-security', heading: 'Storage and Access', body: 'Firebase Authentication handles sign-in and Firestore stores the meal data. The rules give the owner write access while allowing published reviews to be read publicly. JSON import and export makes it possible to move or back up the data.' },
+      { key: 'lessons-learned', heading: 'What I Learned', body: 'The useful part was deciding early what belonged in a meal record and what belonged in a dish rating. That separation made the rankings, filters, exports, and public review pages much easier to build on top of the same data.' },
     ],
   },
 ]
