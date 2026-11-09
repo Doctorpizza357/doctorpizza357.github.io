@@ -131,6 +131,64 @@ export const projects: ProjectData[] = [
 ]
   },
 
+  // ─── FTC BioBuzz Robot ───────────────────────────────────────────────────────
+  {
+    id: 'ftc-biobuzz',
+    title: 'FTC BioBuzz Robot',
+    description:
+      'A complete FTC robot designed independently as a personal project during my first semester of college. I used my free time to work through the robot as a full mechanical system, from the drivetrain and intake through the scoring mechanism and final CAD assembly.',
+    category: ['ROBOTICS', 'MECHANICAL', 'CAD'],
+    technologies: ['Fusion 360', 'CAD', 'FTC Robotics', 'Mechanical Design', '3D Modeling', 'Prototyping'],
+    timeframe: '2026-2026',
+    role: 'Mechanical Designer',
+    liveUrl: 'https://cad.onshape.com/documents/1ef547134821b663635061c6/w/72a094c73d5882b9b92d23fd/e/be8e2cf35221ff7017dbb1f5?renderMode=0&uiState=6af12f6f49cd08c4fdc78506',
+    media: [
+      {
+        type: 'cad-render',
+        src: '/assets/img/ftc-biobuzz-render.png',
+        alt: 'CAD rendering of an FTC BioBuzz robot with a black and yellow mechanism frame',
+        caption: 'Full robot CAD rendering',
+      },
+    ],
+    displayOrder: 1,
+    visualTier: 'standard',
+    caseStudySections: [
+      {
+        key: 'challenge',
+        heading: 'The Challenge',
+        body: 'I wanted to design an entire competition-ready FTC robot independently, using the BioBuzz season as an opportunity to practice systems-level mechanical design. The project had to balance compact packaging, reliable game-piece handling, drivetrain clearance, and access to every subsystem for iteration and maintenance.',
+      },
+      {
+        key: 'approach',
+        heading: 'Approach',
+        body: 'I treated the robot as a complete system rather than a collection of isolated mechanisms. I established the overall frame and component envelope first, then developed the drivetrain, intake, transfer path, and scoring mechanism around the available space. Keeping the assembly together in CAD made it possible to catch interference and packaging issues before committing to fabrication.',
+      },
+      {
+        key: 'mechanical-systems',
+        heading: 'Mechanical Systems',
+        body: 'The final assembly brings the drivetrain, intake, internal transfer mechanism, and upper scoring assembly into one compact robot. Structural plates and brackets support the mechanisms while leaving service access around motors, belts, and moving assemblies. The 3D model provides an interactive view of how those systems fit together.',
+        media: [
+          {
+            type: 'cad-render',
+            src: '/assets/img/ftc-biobuzz-render.png',
+            alt: 'Detailed CAD rendering showing the FTC BioBuzz robot mechanisms and frame',
+            caption: 'Integrated robot assembly',
+          },
+        ],
+      },
+      {
+        key: 'iteration',
+        heading: 'Design and Iteration',
+        body: 'Working on the robot independently meant making design decisions, checking the assembly, and revising the model on my own schedule. I used each iteration to improve packaging, simplify access to components, and make the mechanism relationships clearer in the final assembly.',
+      },
+      {
+        key: 'lessons-learned',
+        heading: 'Lessons Learned',
+        body: 'Designing a full FTC robot in my free time taught me how quickly a small packaging decision can affect the entire machine. The project strengthened my CAD workflow and gave me more confidence in taking a robot from a season concept to a complete mechanical design while balancing performance, reliability, and serviceability.',
+      },
+    ],
+  },
+
   // ─── 4. STEM PathfindR ────────────────────────────────────────────────────────
   {
     id: 'stem-pathfindr',

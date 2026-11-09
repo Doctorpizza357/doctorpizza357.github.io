@@ -15,8 +15,8 @@ export interface ModelViewerProps {
 
 type LoadState = 'idle' | 'loading' | 'ready' | 'error';
 
-/** Timeout (ms) for GLB/GLTF model loading */
-const MODEL_LOAD_TIMEOUT = 10_000;
+/** Timeout (ms) for GLB/GLTF model loading, including large embedded CAD exports */
+const MODEL_LOAD_TIMEOUT = 120_000;
 
 /** Default camera distance from model center */
 const DEFAULT_CAMERA_DISTANCE = 5;

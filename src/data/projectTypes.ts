@@ -72,6 +72,8 @@ export interface MediaItem {
    * @maxLength 200
    */
   caption?: string;
+  /** Optional static preview shown if an interactive model cannot load */
+  fallbackImage?: string;
 }
 
 /**

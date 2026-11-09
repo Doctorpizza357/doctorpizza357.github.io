@@ -115,7 +115,10 @@ function MediaEmbed({ media, lazy = true }: MediaEmbedProps) {
   function renderModel() {
     return (
       <div className={styles.modelContainer}>
-        <ModelViewerBoundary projectTitle={media.alt}>
+        <ModelViewerBoundary
+          projectTitle={media.alt}
+          fallbackImage={media.fallbackImage}
+        >
           <Suspense
             fallback={
               <div className={styles.placeholder}>
@@ -125,6 +128,7 @@ function MediaEmbed({ media, lazy = true }: MediaEmbedProps) {
           >
             <ModelViewerLazy
               modelSrc={media.src}
+              fallbackImage={media.fallbackImage}
               projectTitle={media.alt}
               projectDescription={media.caption || ''}
             />
